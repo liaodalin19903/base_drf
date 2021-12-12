@@ -30,8 +30,8 @@ from ..models import Message
 from .serializers import (
     MessageSerializer,
     MessageCreateSerializer,
+    TestCnameSerializer
 )
-
 
 
 class MessageCreatAPIView(APIView):
@@ -60,12 +60,23 @@ class MessageAdminListAPIView(ListAPIView):
     queryset = Message.objects.all()#.distinct('message_num')
     # queryset = Message.objects.values('message_num').distinct()
 
-
 class MessageRetrieveAPIView(RetrieveAPIView):
     serializer_class = MessageSerializer
     permission_classes = []
     queryset = Message.objects.all()
 
+class TestCnamepAPIView(APIView):
+    serializer_class = TestCnameSerializer
+    def post(self, request):
+        cookie = request.data.get("cookie", None)
+        domains = request.data.get("domains", None)
+
+        print(request.data)
+        print(cookie)
+        print(domains)
+
+        return Response(data="请求成功", status=HTTP_200_OK)
+        pass
 
 
 

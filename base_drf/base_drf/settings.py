@@ -31,6 +31,66 @@ ALLOWED_HOSTS = [
 ]
 
 
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1',
+    'http://127.0.0.1:8000',
+
+    'http://10.10.10.102',
+    'http://10.10.10.102:8000', # 官网
+    'http://10.10.10.102:8080', # 管理员后台
+    'http://10.10.10.102:8081',
+    'http://10.10.10.102:8888',
+
+    'http://10.10.10.103',
+    'http://10.10.10.103:8000',
+    'http://10.10.10.103:8080',
+    'http://10.10.10.103:8081',
+    'http://10.10.10.103:8888',
+
+    'http://10.10.10.105:8000',
+    'http://10.10.10.105:8001',
+    'http://10.10.10.105:8080',
+    'http://10.10.10.105:8888',
+
+    'http://0.0.0.0',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:8001',
+    'http://0.0.0.0:8080',
+    'http://0.0.0.0:8888',
+
+    'http://localhost:8888'
+)
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,6 +141,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'base_drf.middlewares.AccessControlMiddleware.AccessControl'
 ]
 
 ROOT_URLCONF = 'base_drf.urls'

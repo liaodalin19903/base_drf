@@ -27,3 +27,7 @@ class MessageSerializer(ModelSerializer):
         model = Message
         fields = "__all__"
 
+class TestCnameSerializer(Serializer):
+    cookie = serializers.CharField(max_length=1024, help_text="cookie")
+    domains = serializers.CharField(max_length=4096, help_text="域名列表")
+
